@@ -3,11 +3,11 @@ import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
-console.log(route.query)
+console.log('路由query参数：', route.query)
 </script>
 
 <template>
-  我的
+  个人中心
   <button @click="() => router.push({ name: 'home', params: { id: 2 } })">跳转到首页</button>
 </template>
 

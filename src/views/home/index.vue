@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
 import { h, getCurrentInstance } from 'vue'
+import { fetchRoomList } from '../../api/index'
 
 const router = useRouter()
 const route = useRoute()
@@ -13,6 +14,10 @@ proxy.$message({
     h('i', { style: 'color: teal' }, 'VNode'),
   ]),
 })
+const getRoomList = () => {
+  fetchRoomList()
+}
+getRoomList()
 </script>
 
 <template>

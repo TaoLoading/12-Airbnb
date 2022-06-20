@@ -20,5 +20,6 @@ proxy.$message({
   <button @click="() => router.push({ path: '/mine', query: { id: 1 } })">跳转到我的</button>
 </template>
 
-<style>
+<style lang="scss">
+@import "@/assets/scss/home/index.scss";
 </style>

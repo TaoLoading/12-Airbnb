@@ -3,6 +3,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { h, getCurrentInstance } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { fetchRoomList } from '../../api/index'
+import IndexedDB from '../../utils/indexedBD'
 
 // 国际化相关
 console.log('useI18n内容：', useI18n)
@@ -27,6 +28,10 @@ const getRoomList = () => {
   fetchRoomList()
 }
 getRoomList()
+
+// 测试IndexedDB
+const airbnb = new IndexedDB('airbnb')
+airbnb.openStore('elephant', 'id',['nose', 'ear'])
 </script>
 
 <template>

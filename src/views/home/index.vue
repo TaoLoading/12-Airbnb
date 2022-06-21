@@ -31,13 +31,46 @@ getRoomList()
 
 // 测试IndexedDB
 const airbnb = new IndexedDB('airbnb')
+// 创建存储对象
 airbnb.openStore('elephant', 'id',['nose', 'ear'])
+// 新增数据
+const addData = () => {
+  airbnb.updateItem('elephant', {
+    nose: '1m',
+    ear: '0.5m'
+  })
+}
+// 修改数据
+const modifyData = () => {
+  airbnb.updateItem('elephant', {
+    id: 1,
+    nose: '2m',
+    ear: '1.5m'
+  })
+}
+// 删除数据
+const deleteData = () => {
+  airbnb.deleteItem('elephant', 2)
+}
+// 查询全部数据
+const getAllData = () => {
+  airbnb.getList('elephant')
+}
+// 查询单条数据
+const getData = () => {
+  airbnb.getItem('elephant', 1)
+}
 </script>
 
 <template>
   {{ t('message.home') }}
-  <button @click="() => router.push({ path: '/mine', query: { id: 1 } })">跳转到我的</button>
+  <el-button @click="() => router.push({ path: '/mine', query: { id: 1 } })">跳转到我的</el-button>
   <el-date-picker type="date" placeholder="Pick a day" />
+  <el-button @click="addData()">新增数据</el-button>
+  <el-button @click="modifyData()">修改数据</el-button>
+  <el-button @click="deleteData()">删除数据</el-button>
+  <el-button @click="getAllData()">查询全部数据</el-button>
+  <el-button @click="getData()">查询单条数据</el-button>
 </template>
 
 <style lang="scss">

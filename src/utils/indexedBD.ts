@@ -13,7 +13,6 @@ export default class DB {
     return new Promise((resolve, reject) => {
       request.onsuccess = (event: any) => {
         console.log('数据库打开成功')
-        console.log(event)
         // 获取数据库对象
         this.db = event.target.result
         // 处理resolve，保证Promise的执行
@@ -21,11 +20,10 @@ export default class DB {
       }
       request.onerror = (event) => {
         console.log('数据库打开失败')
-        console.log(event)
+        reject(false)
       }
       request.onupgradeneeded = (event) => { // 初始化时会调用一次
         console.log('数据库升级成功')
-        console.log(event)
         // 获取result对象
         const { result }: any = event.target
         // 创建存储对象
@@ -46,32 +44,36 @@ export default class DB {
   // 新增/修改数据
   updateItem(storeName: string, data: any) {
     const store = this.db.transaction([storeName], 'readwrite').objectStore(storeName)
-    const request = store.put({
-      ...data,
-      addTime: new Date().getTime()
+    return new Promise((resolve, reject) => {
+      const request = store.put({
+        ...data,
+        addTime: new Date().getTime()
+      })
+      request.onsuccess = (event: any) => {
+        console.log('数据库写入成功')
+        resolve(event)
+      }
+      request.onerror = (event: any) => {
+        console.log('数据库写入失败')
+        reject(event)
+      }
     })
-    request.onsuccess = (event: any) => {
-      console.log('数据库写入成功')
-      console.log(event)
-    }
-    request.onerror = (event: any) => {
-      console.log('数据库写入失败')
-      console.log(event)
-    }
   }
 
   // 删除数据
   deleteItem(storeName: string, key: number | string) {
     const store = this.db.transaction([storeName], 'readwrite').objectStore(storeName)
-    const request = store.delete(key)
-    request.onsuccess = (event: any) => {
-      console.log('删除数据成功')
-      console.log(event)
-    }
-    request.onerror = (event: any) => {
-      console.log('删除数据失败')
-      console.log(event)
-    }
+    return new Promise((resolve, reject) => {
+      const request = store.delete(key)
+      request.onsuccess = (event: any) => {
+        console.log('删除数据成功')
+        resolve(event)
+      }
+      request.onerror = (event: any) => {
+        console.log('删除数据失败')
+        reject(event)
+      }
+    })
   }
 
   // 查询全部数据
@@ -81,12 +83,11 @@ export default class DB {
       const request = store.getAll()
       request.onsuccess = (event: any) => {
         console.log('全部数据查询成功')
-        console.log(event.target.result)
         resolve(event.target.result)
       }
       request.onerror = (event: any) => {
         console.log('全部数据查询失败')
-        console.log(event)
+        reject(event)
       }
     })
   }
@@ -98,12 +99,11 @@ export default class DB {
       const request = store.get(key)
       request.onsuccess = (event: any) => {
         console.log('单条数据查询成功')
-        console.log(event.target.result)
         resolve(event.target.result)
       }
       request.onerror = (event: any) => {
         console.log('单条数据查询失败')
-        console.log(event)
+        reject(event)
       }
     })
   }

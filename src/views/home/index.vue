@@ -2,19 +2,25 @@
 import { useRouter, useRoute } from 'vue-router'
 import { h, getCurrentInstance } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { fetchRoomList } from '../../api/index'
+import { fetchRoomList, MockElephant } from '../../api/index'
 import IndexedDB from '../../utils/indexedBD'
 
-// 国际化相关
+/**
+ * 国际化相关
+ */
 console.log('useI18n内容：', useI18n)
 const { t } = useI18n() // i18n提供t方法，通过t方法包裹变量实现值的显示
 
-// 路由相关
+/**
+ * 路由相关
+ */
 const router = useRouter()
 const route = useRoute()
 console.log('路由params参数：', route.params)
 
-// 应用element-plus组件
+/**
+ * 应用element-plus组件
+ */
 const { proxy }: any = getCurrentInstance()
 proxy.$message({
   message: h('p', null, [
@@ -23,16 +29,22 @@ proxy.$message({
   ]),
 })
 
-// 测试接口的调用
+/**
+ * 测试接口的调用
+ */
 const getRoomList = () => {
-  fetchRoomList()
+  fetchRoomList().then(res => {
+    console.log('真实接口返回的数据：', res)
+  })
 }
 getRoomList()
 
-// 测试IndexedDB
+/**
+ * IndexedDB相关
+ */
 const airbnb = new IndexedDB('airbnb')
 // 创建存储对象
-airbnb.openStore('elephant', 'id',['nose', 'ear'])
+airbnb.openStore('elephant', 'id', ['nose', 'ear'])
 // 新增数据
 const addData = () => {
   airbnb.updateItem('elephant', {
@@ -60,6 +72,13 @@ const getAllData = () => {
 const getData = () => {
   airbnb.getItem('elephant', 1)
 }
+// 使用indexedDB实现的Mock接口
+const getElephant = () => {
+  MockElephant().then(res => {
+    console.log('Mock接口返回的数据：', res)
+  })
+}
+getElephant()
 </script>
 
 <template>

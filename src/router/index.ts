@@ -4,6 +4,10 @@ import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router'
 
 const routes = [
   {
+    path: '/',
+    redirect: '/home'
+  },
+  {
     path: '/home',
     name: 'home',
     component: home,

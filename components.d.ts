@@ -8,10 +8,10 @@ declare module '@vue/runtime-core' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    HeaderCommon: typeof import('./src/components/layout/headerCommon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
 }
 
-export {}
+export { }

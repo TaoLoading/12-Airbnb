@@ -1,29 +1,35 @@
-.footer-common{
+.footer-common {
   border-top: 1px solid #ccc;
-  .inner-footer{
+
+  .inner-footer {
     @include main-wapper;
-    ul{
+
+    ul {
       flex-direction: row;
-      @include flex-layout(row,space-between,flex-start);
-      li{
-        @include flex-layout(column,space-between,flex-start);
-        a{
+      @include flex-layout(row, space-between, flex-start);
+
+      li {
+        @include flex-layout(column, space-between, flex-start);
+
+        a {
           color: #999;
           text-decoration: none;
           margin-bottom: 10px;
           font-size: 14px;
-          &:hover{
+
+          &:hover {
             text-decoration: underline;
           }
         }
       }
-     }
-     .copy-right{
+    }
+
+    .copy-right {
       @include main-wapper;
       text-align: center;
       border-top: 1px solid #ccc;
       padding: 30px 0;
       color: #666;
-     }
+    }
   }
 }

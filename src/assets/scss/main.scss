@@ -1,5 +1,7 @@
-body,html,p{
-  padding:0;
+body,
+html,
+p {
+  padding: 0;
   margin: 0;
 }
 
@@ -20,34 +22,36 @@ body,html,p{
   background: hsla(0, 0%, 53%, 0.1);
 }
 
-ul,li,p{
+ul,
+li,
+p {
   padding: 0;
   margin: 0;
 }
 
-.container{
+.container {
   min-height: calc(100vh - 402px);
 }
 
-.el-pagination{
+.el-pagination {
   text-align: center;
   margin: 20px auto;
 }
 
-.ml-10{
+.ml-10 {
   margin-left: 10px;
 }
 
-.loading-block{
+.loading-block {
   @include placeholder-order(center);
 }
 
-.mask{
-  position:fixed;
+.mask {
+  position: fixed;
   width: 100%;
   background-color: transparent;
   z-index: 10;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   height: 100%;
 }

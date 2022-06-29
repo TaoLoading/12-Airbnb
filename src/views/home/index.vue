@@ -1,8 +1,8 @@
 <template>
   <!-- {{ t('message.home') }}
-  <el-button @click="() => router.push({ path: '/mine', query: { id: 1 } })">跳转到我的</el-button>
+  <el-button @click="() => router.push({ path: '/mine', query: { id: 1 } })">跳转到我的</el-button> -->
   <el-date-picker type="date" placeholder="Pick a day" />
-  <el-button @click="addData()">新增数据</el-button>
+  <!-- <el-button @click="addData()">新增数据</el-button>
   <el-button @click="modifyData()">修改数据</el-button>
   <el-button @click="deleteData()">删除数据</el-button>
   <el-button @click="getAllData()">查询全部数据</el-button>

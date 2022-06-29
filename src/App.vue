@@ -1,7 +1,7 @@
 <template>
   <el-config-provider :locale="locale">
     <!-- 头部 -->
-    <commonHeader></commonHeader>
+    <commonHeader @changeLang="changeLang"></commonHeader>
     <!-- 主体 -->
     <router-view />
   </el-config-provider>
@@ -20,10 +20,10 @@ const router = useRouter()
 // 切换语言
 const locale = ref(zhCn)
 const { locale: localeLanguage } = useI18n() // locale是当前的语言环境，为避免冲突起了localeLanguage的别名
-/* const changeLang = (language: any) => {
+const changeLang = (language: any) => {
   locale.value = language
   localeLanguage.value = language.name
-} */
+}
 </script>
 
 <style lang="scss">

@@ -18,10 +18,41 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
+import { saveLanguageApi } from '../../api/layout'
 
 const activeIndex = ref('1')
+
+// 用于更改语言的待分发事件
+const emit = defineEmits<{
+  (
+    e: 'changeLang',
+    language: any
+  ): void
+}>()
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
+  // 中文
+  if (key === 'zh') {
+    emit('changeLang', zhCn)
+    saveLanguage(zhCn)
+  } else if (key === 'en') {
+    emit('changeLang', en)
+    saveLanguage(en)
+  }
+}
+
+// 调用接口保存当前语言包
+const saveLanguage = (language: any) => {
+  saveLanguageApi(language).then(res => {
+    const { success } = res
+    if (success) {
+      console.log('保存语言包成功')
+    } else {
+      console.log('保存语言包失败')
+    }
+  })
 }
 </script>
 

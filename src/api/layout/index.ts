@@ -5,7 +5,7 @@ import { IResultOr } from '../interface'
 const airbnbDB = new DB('airbnb')
 
 // Mock接口：保存当前语言包
-export async function saveLanguageApi(lang: any) {
+export async function saveLanguageApi(lang: string) {
   const loading = ElLoading.service({
     lock: true,
     background: 'rgba(0, 0, 0, 0.1)'
@@ -38,6 +38,7 @@ export async function fetchLanguageApi() {
     lock: true,
     background: 'rgba(0, 0, 0, 0.1)'
   })
+  await airbnbDB.openStore('language', 'id', ['name'])
   const result: IResultOr = await airbnbDB.getItem('language', 1).then((res: any) => {
     setTimeout(() => {
       loading.close()

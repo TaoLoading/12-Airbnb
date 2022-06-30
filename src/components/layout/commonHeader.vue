@@ -20,7 +20,7 @@
 import { ref } from 'vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
-import { saveLanguageApi } from '../../api/layout'
+import { fetchLanguageApi, saveLanguageApi } from '../../api/layout'
 
 const activeIndex = ref('1')
 
@@ -36,15 +36,15 @@ const handleSelect = (key: string, keyPath: string[]) => {
   // 中文
   if (key === 'zh') {
     emit('changeLang', zhCn)
-    saveLanguage(zhCn)
+    saveLanguage('zh')
   } else if (key === 'en') {
     emit('changeLang', en)
-    saveLanguage(en)
+    saveLanguage('en')
   }
 }
 
-// 调用接口保存当前语言包
-const saveLanguage = (language: any) => {
+// 保存语言包
+const saveLanguage = (language: string) => {
   saveLanguageApi(language).then(res => {
     const { success } = res
     if (success) {
@@ -54,6 +54,26 @@ const saveLanguage = (language: any) => {
     }
   })
 }
+
+// 获取语言包
+const fetchLanguage = () => {
+  fetchLanguageApi().then(res => {
+    const { success, result } = res
+    // 获取语言包名
+    const { name } = result
+    if (name === 'zh') {
+      emit('changeLang', zhCn)
+    } else if (name === 'en') {
+      emit('changeLang', en)
+    }
+    if (success) {
+      console.log('获取语言包成功')
+    } else {
+      console.log('获取语言包失败')
+    }
+  })
+}
+fetchLanguage()
 </script>
 
 <style lang="scss">

@@ -1,17 +1,21 @@
 import { AxiosRequestConfig } from 'axios'
-export interface IResultOr { // 定义interface规范返回结果的类型
+
+// 定义interface规范返回结果的类型
+export interface IResultOr {
   code: string,
   success: boolean,
   message: string,
   result: any
 }
 
-export interface IRoomListParams extends AxiosRequestConfig { // 定义interface规范返回结果的类型
+// 定义interface规范返回结果的类型
+export interface IRoomListParams extends AxiosRequestConfig {
   pageNo: number,
   pageSize: number,
   cityCode: string,
 }
 
-export interface IRoomDetailParams extends AxiosRequestConfig { // 定义interface规范返回结果的类型
+// 定义interface规范返回结果的类型
+export interface IRoomDetailParams extends AxiosRequestConfig {
   id: number
 }

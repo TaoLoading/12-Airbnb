@@ -8,7 +8,6 @@ import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
-console.log('路由query参数：', route.query)
 </script>
 
 <style>

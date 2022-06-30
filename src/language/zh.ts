@@ -30,7 +30,7 @@ export default {
     neighbors: '邻里支持'
   },
   login: {
-    loginBtn: '进入爱此迎',
+    loginBtn: '进入爱彼迎',
     signBtn: '立即注册',
     loginTab: '登录',
     signTab: '注册',

@@ -12,6 +12,7 @@
       <el-menu-item index="avatar">
         <img class="avatar" src="../../assets/images/layout/avatar.jpg" alt="个人中心">
       </el-menu-item>
+      <el-menu-item index="login">{{ t("login.loginTab") }}/{{ t("login.signTab") }}</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -21,6 +22,7 @@ import { ref } from 'vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import { fetchLanguageApi, saveLanguageApi } from '../../api/layout'
 
 const activeIndex = ref('1')
@@ -33,6 +35,9 @@ const emit = defineEmits<{
     language: any
   ): void
 }>()
+
+// 菜单点击事件
+const router = useRouter()
 const handleSelect = (key: string) => {
   // 中文
   if (key === 'zh') {
@@ -41,6 +46,8 @@ const handleSelect = (key: string) => {
   } else if (key === 'en') {
     emit('changeLang', en)
     saveLanguage('en')
+  } else if (key === 'login') {
+    router.push({ name: 'login' })
   }
 }
 

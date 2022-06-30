@@ -1,5 +1,3 @@
-import home from '@/views/home/index.vue'
-import mine from '@/views/mine/index.vue'
 import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -10,7 +8,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: home,
+    component: () => import('@/views/home/index.vue'),
     meta: {
       title: '爱彼迎-全球大型房屋租赁平台',
       keywords: '爱彼迎，特价房源，品质房源，租赁平台',
@@ -21,13 +19,18 @@ const routes = [
   {
     path: '/mine',
     name: 'mine',
-    component: mine,
+    component: () => import('@/views/mine/index.vue'),
     meta: {
       title: '',
       keywords: '',
       description: '',
       keepAlive: false
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index.vue')
   }
 ]
 

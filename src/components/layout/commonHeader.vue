@@ -33,8 +33,7 @@ const emit = defineEmits<{
     language: any
   ): void
 }>()
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+const handleSelect = (key: string) => {
   // 中文
   if (key === 'zh') {
     emit('changeLang', zhCn)

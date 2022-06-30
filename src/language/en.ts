@@ -1,10 +1,12 @@
 export default {
-  header: { // 头部组件
+  // 头部组件
+  header: {
     orders: 'Housing order center',
     records: 'The historical footprints',
     language: 'Language'
   },
-  footer: { // 底部组件
+  // 底部组件
+  footer: {
     airbnb: 'Airbnb',
     careers: 'Careers',
     news: 'News',

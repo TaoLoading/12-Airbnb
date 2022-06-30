@@ -1,10 +1,12 @@
 export default {
-  header: { // 头部组件
+  // 头部组件
+  header: {
     orders: '房源订单中心',
     records: '历史足迹',
     language: '语言'
   },
-  footer: { // 底部组件
+  // 底部组件
+  footer: {
     airbnb: '爱彼迎',
     careers: '工作机会',
     news: '爱彼迎新闻',

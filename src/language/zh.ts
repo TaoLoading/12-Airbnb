@@ -37,7 +37,11 @@ export default {
     placeMobile: '请输入正确的手机号',
     placePass: '请输入正确的密码',
     logout: '退出',
-    loginLost: '您还未登录，请先登录哦~'
+    loginLost: '您还未登录，请先登录哦~',
+    signSuccess: '注册成功',
+    signError: '注册失败',
+    loginSuccess: '登录成功',
+    loginError: '登录失败'
   },
   home: {
     h2Title: '跨年特惠房源',

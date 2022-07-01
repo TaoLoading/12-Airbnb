@@ -37,7 +37,11 @@ export default {
     placeMobile: 'Please  write correct mobile number',
     placePass: 'Please white correct password',
     logout: 'Logout',
-    loginLost: 'Please login first'
+    loginLost: 'Please login first',
+    signSuccess: 'Sign up success',
+    signError: 'Sign up error',
+    loginSuccess: 'Login in success',
+    loginError: 'Login in error'
   },
   home: {
     h2Title: "New Year's Eve Discounts Housing Resource",

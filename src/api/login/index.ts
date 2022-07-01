@@ -48,7 +48,7 @@ export async function userSignApi(params: any) {
         setTimeout(() => {
           loading.close()
         }, 200)
-        resolve({ code: '000000', success: true, message: '操作成功', result: null })
+        resolve({ code: '000000', success: true, message: '注册成功', result: null })
       })
     })
   }
@@ -86,9 +86,10 @@ export async function userLoginApi(params: any) {
     result = await new Promise((resolve, reject) => {
       resolve({ code: correct.code, success: false, message: correct.code === '000002' ? '密码不正确' : (correct.code === '000003' ? '手机号不正确' : '不存在该用户，请先注册'), result: null })
     })
-  } else { // 手机号和密码正确后更新登录状态
+  } else {
+    // 手机号和密码正确后更新登录状态
     const token = (new Date()).getTime() + ''
-    localStorage.setItem("token", token)
+    localStorage.setItem('token', token)
     const obj = { status: 1, userId: correct.userId, token }
     Object.assign(params, obj)
     result = await new Promise((resolve, reject) => {
@@ -96,7 +97,7 @@ export async function userLoginApi(params: any) {
         setTimeout(() => {
           loading.close()
         }, 200)
-        resolve({ code: '000000', success: true, message: '操作成功', result: obj })
+        resolve({ code: '000000', success: true, message: '登录成功', result: obj })
       })
     })
   }
@@ -116,9 +117,7 @@ export async function userLogoutApi() {
         loading.close()
       }, 200)
       res && res.filter((item: any) => {
-        console.log('每一项', item)
-        const token = localStorage.getItem("token")
-        console.log('token', token)
+        const token = localStorage.getItem('token')
         if (item.token && item.token.indexOf(token) !== -1) { // 存在相同token
           resolve({ userId: item.userId })
         }

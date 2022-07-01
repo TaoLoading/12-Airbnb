@@ -27,7 +27,7 @@ export default class DB {
         // 获取result对象
         const { result }: any = event.target
 
-        // 初始化多个ojectStore对象仓库
+        // 初始化多个store仓库
         for (const storeName in stores) {
           const { keyPath, indexes } = stores[storeName]
           // 没有表则新建表

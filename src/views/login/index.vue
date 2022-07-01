@@ -26,9 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, getCurrentInstance } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { IResultOr } from '@/api/interface'
+import { userSignApi, userLoginApi } from '@/api/login'
 
 interface FormType {
   mobile: string,
@@ -41,6 +43,7 @@ const ruleForm: FormType = reactive({
   mobile: '',
   password: ''
 })
+const { proxy }: any = getCurrentInstance()
 
 // 切换登录注册
 const loginText = ref(t('login.loginBtn'))
@@ -79,9 +82,38 @@ const router = useRouter()
 const submitForm = () => {
   ruleFormRef.value.validate((valid: any) => {
     if (valid) {
-      router.push({ name: 'home' })
+      if (activeName.value === 'sign') {
+        userSign(ruleForm)
+      } else if (activeName.value === 'login') {
+        userLogin(ruleForm)
+      }
     } else {
       return
+    }
+  })
+}
+
+// 注册
+const userSign = (params: FormType) => {
+  userSignApi(params).then((res: IResultOr) => {
+    const { success, message } = res
+    if (success) {
+      proxy.$message.success(t('login.signSuccess'))
+    } else {
+      proxy.$message.error(t('login.signError'))
+    }
+  })
+}
+
+// 登录
+const userLogin = (params: FormType) => {
+  userLoginApi(params).then((res: IResultOr) => {
+    const { success, message } = res
+    if (success) {
+      proxy.$message.success(t('login.loginSuccess'))
+      router.push({ name: 'home' })
+    } else {
+      proxy.$message.error(t('login.loginError'))
     }
   })
 }

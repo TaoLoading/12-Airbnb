@@ -1,5 +1,5 @@
 import { ElLoading } from 'element-plus'
-import DB from '../../utils/indexedBD'
+import DB from '../../utils/indexedDB'
 import { IResultOr } from '../interface'
 
 const airbnbDB = new DB('airbnb')

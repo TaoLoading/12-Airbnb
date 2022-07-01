@@ -1,10 +1,7 @@
 import { ElLoading } from 'element-plus'
-import DB from '../../utils/indexedDB'
 import { IResultOr } from '../interface'
 // 引入数据库和对象仓库
 import airbnb from '../../db'
-
-// const airbnbDB = new DB('airbnb')
 
 // Mock接口：保存当前语言包
 export async function saveLanguageApi(lang: string) {

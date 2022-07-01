@@ -9,7 +9,6 @@
 
 import { ElLoading } from 'element-plus'
 import { IResultOr } from '../interface'
-// import { getQueryCookie } from '../../utils/util'
 import airbnb from '../../db'
 
 const storeName = Object.keys(airbnb.userObjectStore)[0]

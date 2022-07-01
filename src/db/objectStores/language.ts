@@ -1,9 +1,9 @@
-import TypeObjectStore from '../type' // 引入类型别名
+import TypeObjectStore from '../type'
 
 const webLang: TypeObjectStore =
 {
   keyPath: 'id',
-  indexs: ['name']
+  indexes: ['name']
 }
 
 const languageObjectStore = {

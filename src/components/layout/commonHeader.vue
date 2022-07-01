@@ -67,6 +67,11 @@ const saveLanguage = (language: string) => {
 const fetchLanguage = () => {
   fetchLanguageApi().then(res => {
     const { success, result } = res
+    // 没有预存的语言包时，默认显示中文
+    if (!result) {
+      emit('changeLang', zhCn)
+      return
+    }
     // 获取语言包名
     const { name } = result
     if (name === 'zh') {

@@ -1,6 +1,6 @@
 // 类型别名的用法
-type TypeObjectStore = { // 这里定义属性类型
+type TypeObjectStore = {
   keyPath: string,
-  indexs?: Array<string>
+  indexes?: Array<string>
 }
 export default TypeObjectStore

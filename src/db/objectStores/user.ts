@@ -1,9 +1,9 @@
-import TypeObjectStore from '../type' // 引入类型别名
+import TypeObjectStore from '../type'
 
 const webUser: TypeObjectStore =
 {
   keyPath: 'userId',
-  indexs: ['mobile', 'password', 'status']
+  indexes: ['mobile', 'password', 'status']
 }
 
 const userObjectStore =

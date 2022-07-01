@@ -1,9 +1,9 @@
-import TypeObjectStore from '../type' // 引入类型别名
+import TypeObjectStore from '../type'
 
 const webRecord: TypeObjectStore =
 {
   keyPath: 'recordId',
-  indexs: ['title', 'personNumber', 'pictureUrl', 'price']
+  indexes: ['title', 'personNumber', 'pictureUrl', 'price']
 }
 
 const recordObjectStore =

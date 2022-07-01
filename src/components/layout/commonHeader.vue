@@ -86,7 +86,7 @@ const fetchLanguage = () => {
     }
   })
 }
-fetchLanguage()
+// fetchLanguage()
 </script>
 
 <style lang="scss">

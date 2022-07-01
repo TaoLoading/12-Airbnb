@@ -10,7 +10,7 @@ import orderObjectStore from './objectStores/order'
 import recordObjectStore from './objectStores/record'
 
 // 数据库
-export const airbnbDB = new DB('airbnb')
+const airbnbDB = new DB('airbnb')
 
 export default {
   airbnbDB,

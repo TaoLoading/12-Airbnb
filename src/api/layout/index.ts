@@ -9,7 +9,7 @@ export async function saveLanguageApi(lang: string) {
     lock: true,
     background: 'rgba(0, 0, 0, 0.1)'
   })
-  await airbnb.airbnbDB.openStore('language', 'id', ['name'])
+  // await airbnb.airbnbDB.openStore('language', 'id', ['name'])
   const resultOr: IResultOr = await airbnb.airbnbDB.getItem('language', 1).then((res: any) => {
     return { code: '000000', message: '操作成功', result: res, success: true }
   })
@@ -37,7 +37,8 @@ export async function fetchLanguageApi() {
     lock: true,
     background: 'rgba(0, 0, 0, 0.1)'
   })
-  await airbnb.airbnbDB.openStore('language', 'id', ['name'])
+  console.log('获取当前语言包')
+  // await airbnb.airbnbDB.openStore('language', 'id', ['name'])
   const result: IResultOr = await airbnb.airbnbDB.getItem('language', 1).then((res: any) => {
     setTimeout(() => {
       loading.close()

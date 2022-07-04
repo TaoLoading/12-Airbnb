@@ -26,16 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, getCurrentInstance } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
 import useFormProperties from '@/compose/login/useFormProperties'
 import userFormOperates from '@/compose/login/userFormOperates'
 
 const { t } = useI18n()
 // 解构hook
 const { activeName, loginText, ruleForm, ruleFormRef, rules } = useFormProperties(t)
-const { userSign, userLogin } = userFormOperates(ruleForm, t)
+const { userSign, userLogin } = userFormOperates(t)
 
 // 切换登录注册
 const handleClick = (e: any) => {
@@ -46,7 +44,6 @@ const handleClick = (e: any) => {
 
 
 // 提交表单
-const router = useRouter()
 const submitForm = () => {
   ruleFormRef.value.validate((valid: any) => {
     if (valid) {

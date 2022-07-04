@@ -12,10 +12,11 @@ interface FormType {
   password: string
 }
 
-export default function userFormOperates(params: FormType, t: any) {
+export default function userFormOperates(t: any) {
   const { proxy }: any = getCurrentInstance()
   // 注册
   const userSign = (params: FormType) => {
+    console.log('params', params)
     userSignApi(params).then((res: IResultOr) => {
       const { success, message } = res
       if (success) {

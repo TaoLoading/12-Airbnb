@@ -41,7 +41,9 @@ export default {
     signSuccess: '注册成功',
     signError: '注册失败',
     loginSuccess: '登录成功',
-    loginError: '登录失败'
+    loginError: '登录失败',
+    logoutSuccess: '登出成功',
+    logoutError: '登出失败'
   },
   home: {
     h2Title: '跨年特惠房源',

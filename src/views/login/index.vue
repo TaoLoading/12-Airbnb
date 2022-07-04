@@ -108,12 +108,14 @@ const userSign = (params: FormType) => {
 // 登录
 const userLogin = (params: FormType) => {
   userLoginApi(params).then((res: IResultOr) => {
-    const { success, message } = res
+    const { success, result, message } = res
     if (success) {
+      const { status } = result
+      localStorage.setItem('userStatus', status)
       proxy.$message.success(t('login.loginSuccess'))
       router.push({ name: 'home' })
     } else {
-      proxy.$message.error(t('login.loginError'))
+      proxy.$message.error(message)
     }
   })
 }

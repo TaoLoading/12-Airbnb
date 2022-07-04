@@ -4,29 +4,39 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="orders">{{ t("header.orders") }}</el-menu-item>
       <el-menu-item index="records">{{ t("header.records") }}</el-menu-item>
-      <el-sub-menu index="2">
+      <el-sub-menu index="language">
         <template #title>{{ t("header.language") }}</template>
         <el-menu-item index="zh">中文</el-menu-item>
         <el-menu-item index="en">English</el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="avatar">
-        <img class="avatar" src="../../assets/images/layout/avatar.jpg" alt="个人中心">
-      </el-menu-item>
-      <el-menu-item index="login">{{ t("login.loginTab") }}/{{ t("login.signTab") }}</el-menu-item>
+      <el-sub-menu index="avatar" v-if="userStatus === '1'">
+        <template #title>
+          <img class="avatar" src="../../assets/images/layout/avatar.jpg" alt="个人中心">
+        </template>
+        <el-menu-item index="logout">退出</el-menu-item>
+      </el-sub-menu>
+      <el-menu-item index="login" v-else>{{ t("login.loginTab") }}/{{ t("login.signTab") }}</el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { fetchLanguageApi, saveLanguageApi } from '../../api/layout'
+import { userLogoutApi } from '@/api/login'
+import { IResultOr } from '@/api/interface'
+
+// 读取用户登录状态
+const userStatus = localStorage.getItem('userStatus')
+console.log('userStatus', userStatus)
 
 const activeIndex = ref('1')
 const { t } = useI18n()
+const { proxy }: any = getCurrentInstance()
 
 // 用于更改语言的待分发事件
 const emit = defineEmits<{
@@ -48,6 +58,8 @@ const handleSelect = (key: string) => {
     saveLanguage('en')
   } else if (key === 'login') {
     router.push({ name: 'login' })
+  } else if (key === 'logout') {
+    userLogout()
   }
 }
 
@@ -87,6 +99,21 @@ const fetchLanguage = () => {
   })
 }
 // fetchLanguage()
+
+// 登出
+const userLogout = () => {
+  userLogoutApi().then((res: IResultOr) => {
+    const { success } = res
+    if (success) {
+      proxy.$message.success(t('login.logoutSuccess'))
+      localStorage.setItem('userStatus', '0')
+      console.log('===========', localStorage.getItem('userStatus'))
+      router.push({ name: 'login' })
+    } else {
+      proxy.$message.error(t('login.logoutError'))
+    }
+  })
+}
 </script>
 
 <style lang="scss">

@@ -41,7 +41,9 @@ export default {
     signSuccess: 'Sign up success',
     signError: 'Sign up error',
     loginSuccess: 'Login in success',
-    loginError: 'Login in error'
+    loginError: 'Login in error',
+    logoutSuccess: 'Logout in success',
+    logoutError: 'Logout in error'
   },
   home: {
     h2Title: "New Year's Eve Discounts Housing Resource",

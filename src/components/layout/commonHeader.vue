@@ -27,10 +27,10 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 import { fetchLanguageApi } from '../../api/layout'
 import { userLogoutApi } from '@/api/login'
 import { IResultOr } from '@/api/interface'
+import { useStore } from '@/store/index'
 
 const activeIndex = ref('1')
 const { t, locale: localeLanguage } = useI18n()

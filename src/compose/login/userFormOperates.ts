@@ -4,9 +4,9 @@
 
 import { getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 import { IResultOr } from '@/api/interface'
 import { userSignApi, userLoginApi } from '@/api/login'
+import { useStore } from '@/store'
 
 interface FormType {
   mobile: string,

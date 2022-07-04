@@ -1,5 +1,19 @@
 import { saveLanguageApi } from '@/api/layout'
-import { createStore } from 'vuex'
+import { createStore, Store, useStore as baseUseStore } from 'vuex'
+import { InjectionKey } from 'vue'
+
+/* 此部分代码为vue增加ts支持所用到的变量 */
+// 为 store state 声明类型
+export interface stateType {
+  locale: any,
+  userStatus: Number
+}
+// 定义 injection key
+export const key: InjectionKey<Store<stateType>> = Symbol()
+
+export function useStore() {
+  return baseUseStore(key)
+}
 
 export const store = createStore({
   state: {

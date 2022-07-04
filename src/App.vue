@@ -13,9 +13,9 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 import commonHeader from './components/layout/commonHeader.vue'
 import commonFooter from './components/layout/commonFooter.vue'
+import { useStore } from '@/store/index'
 
 const route = useRoute()
 const store = useStore()

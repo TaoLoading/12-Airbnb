@@ -39,7 +39,6 @@ const { userSign, userLogin } = userFormOperates(t)
 const handleClick = (e: any) => {
   const { name } = e.props
   loginText.value = t(`login['${name}Btn']`)
-  console.log('loginText', loginText.value)
 }
 
 

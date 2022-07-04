@@ -117,4 +117,3 @@ const userLogout = () => {
 <style lang="scss">
 @import "@/assets/scss/layout/commonHeader.scss";
 </style>
-

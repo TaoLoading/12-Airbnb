@@ -83,4 +83,3 @@ class Http {
 }
 
 export const http = new Http()
-

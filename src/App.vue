@@ -19,14 +19,6 @@ import commonFooter from './components/layout/commonFooter.vue'
 
 const route = useRoute()
 const store = useStore()
-
-// 切换语言
-/* const locale = ref(zhCn)
-const { locale: localeLanguage } = useI18n() // locale是当前的语言环境，为避免冲突起了localeLanguage的别名
-const changeLang = (language: any) => {
-  locale.value = language
-  localeLanguage.value = language.name
-} */
 </script>
 
 <style lang="scss">

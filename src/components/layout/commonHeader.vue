@@ -32,7 +32,6 @@ import { IResultOr } from '@/api/interface'
 
 // 读取用户登录状态
 const userStatus = localStorage.getItem('userStatus')
-console.log('userStatus', userStatus)
 
 const activeIndex = ref('1')
 const { t } = useI18n()
@@ -107,7 +106,6 @@ const userLogout = () => {
     if (success) {
       proxy.$message.success(t('login.logoutSuccess'))
       localStorage.setItem('userStatus', '0')
-      console.log('===========', localStorage.getItem('userStatus'))
       router.push({ name: 'login' })
     } else {
       proxy.$message.error(t('login.logoutError'))

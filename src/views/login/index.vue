@@ -29,53 +29,21 @@
 import { ref, reactive, getCurrentInstance } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { IResultOr } from '@/api/interface'
-import { userSignApi, userLoginApi } from '@/api/login'
-
-interface FormType {
-  mobile: string,
-  password: string
-}
+import useFormProperties from '@/compose/login/useFormProperties'
+import userFormOperates from '@/compose/login/userFormOperates'
 
 const { t } = useI18n()
-const activeName = ref('login')
-const ruleForm: FormType = reactive({
-  mobile: '',
-  password: ''
-})
-const { proxy }: any = getCurrentInstance()
+// 解构hook
+const { activeName, loginText, ruleForm, ruleFormRef, rules } = useFormProperties(t)
+const { userSign, userLogin } = userFormOperates(ruleForm, t)
 
 // 切换登录注册
-const loginText = ref(t('login.loginBtn'))
 const handleClick = (e: any) => {
   const { name } = e.props
-  if (name === 'login') {
-    loginText.value = t('login.loginBtn')
-  } else if (name === 'sign') {
-    loginText.value = t('login.signBtn')
-  }
+  loginText.value = t(`login['${name}Btn']`)
+  console.log('loginText', loginText.value)
 }
 
-// 校验规则
-const ruleFormRef = ref()
-const rules = reactive({
-  mobile: [
-    {
-      required: true,
-      min: 11,
-      max: 11,
-      message: t('login.placeMobile'),
-      trigger: 'blur'
-    }
-  ],
-  password: [
-    {
-      required: true,
-      message: t('login.placePass'),
-      trigger: 'blur'
-    }
-  ]
-})
 
 // 提交表单
 const router = useRouter()
@@ -93,32 +61,6 @@ const submitForm = () => {
   })
 }
 
-// 注册
-const userSign = (params: FormType) => {
-  userSignApi(params).then((res: IResultOr) => {
-    const { success, message } = res
-    if (success) {
-      proxy.$message.success(t('login.signSuccess'))
-    } else {
-      proxy.$message.error(t('login.signError'))
-    }
-  })
-}
-
-// 登录
-const userLogin = (params: FormType) => {
-  userLoginApi(params).then((res: IResultOr) => {
-    const { success, result, message } = res
-    if (success) {
-      const { status } = result
-      localStorage.setItem('userStatus', status)
-      proxy.$message.success(t('login.loginSuccess'))
-      router.push({ name: 'home' })
-    } else {
-      proxy.$message.error(message)
-    }
-  })
-}
 </script>
 
 <style lang="scss" scoped>

@@ -9,7 +9,7 @@
         <el-menu-item index="zh">中文</el-menu-item>
         <el-menu-item index="en">English</el-menu-item>
       </el-sub-menu>
-      <el-sub-menu index="avatar" v-if="userStatus === '1'">
+      <el-sub-menu index="avatar" v-if="store.state.userStatus === 1">
         <template #title>
           <img class="avatar" src="../../assets/images/layout/avatar.jpg" alt="个人中心">
         </template>
@@ -26,16 +26,15 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { fetchLanguageApi, saveLanguageApi } from '../../api/layout'
+import { useStore } from 'vuex'
+import { fetchLanguageApi } from '../../api/layout'
 import { userLogoutApi } from '@/api/login'
 import { IResultOr } from '@/api/interface'
 
-// 读取用户登录状态
-const userStatus = localStorage.getItem('userStatus')
-
 const activeIndex = ref('1')
-const { t } = useI18n()
+const { t, locale: localeLanguage } = useI18n()
 const { proxy }: any = getCurrentInstance()
+const store = useStore()
 
 // 用于更改语言的待分发事件
 const emit = defineEmits<{
@@ -48,30 +47,18 @@ const emit = defineEmits<{
 // 菜单点击事件
 const router = useRouter()
 const handleSelect = (key: string) => {
-  // 中文
   if (key === 'zh') {
-    emit('changeLang', zhCn)
-    saveLanguage('zh')
+    store.dispatch('saveLanguage', zhCn)
+    // 用于切换非element ui组件的语言
+    localeLanguage.value = key
   } else if (key === 'en') {
-    emit('changeLang', en)
-    saveLanguage('en')
+    store.dispatch('saveLanguage', en)
+    localeLanguage.value = key
   } else if (key === 'login') {
     router.push({ name: 'login' })
   } else if (key === 'logout') {
     userLogout()
   }
-}
-
-// 保存语言包
-const saveLanguage = (language: string) => {
-  saveLanguageApi(language).then(res => {
-    const { success } = res
-    if (success) {
-      console.log('保存语言包成功')
-    } else {
-      console.log('保存语言包失败')
-    }
-  })
 }
 
 // 获取语言包
@@ -105,7 +92,7 @@ const userLogout = () => {
     const { success } = res
     if (success) {
       proxy.$message.success(t('login.logoutSuccess'))
-      localStorage.setItem('userStatus', '0')
+      store.commit('setUserStatus', 0)
       router.push({ name: 'login' })
     } else {
       proxy.$message.error(t('login.logoutError'))

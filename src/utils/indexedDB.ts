@@ -102,7 +102,6 @@ export default class DB {
 
   // 查询单条数据
   getItem(storeName: string, key: number | string) {
-    console.log('查询数据接口', storeName, key)
     const store = this.db.transaction([storeName]).objectStore(storeName)
     return new Promise((resolve, reject) => {
       const request = store.get(key)

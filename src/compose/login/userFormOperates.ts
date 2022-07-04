@@ -4,6 +4,7 @@
 
 import { getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import { IResultOr } from '@/api/interface'
 import { userSignApi, userLoginApi } from '@/api/login'
 
@@ -16,25 +17,26 @@ export default function userFormOperates(t: any) {
   const { proxy }: any = getCurrentInstance()
   // 注册
   const userSign = (params: FormType) => {
-    console.log('params', params)
     userSignApi(params).then((res: IResultOr) => {
       const { success, message } = res
       if (success) {
         proxy.$message.success(t('login.signSuccess'))
       } else {
-        proxy.$message.error(t('login.signError'))
+        console.log('res', res)
+        proxy.$message.error(message)
       }
     })
   }
 
   // 登录
   const router = useRouter()
+  const store = useStore()
   const userLogin = (params: FormType) => {
     userLoginApi(params).then((res: IResultOr) => {
       const { success, result, message } = res
       if (success) {
         const { status } = result
-        localStorage.setItem('userStatus', status)
+        store.commit('setUserStatus', status)
         proxy.$message.success(t('login.loginSuccess'))
         router.push({ name: 'home' })
       } else {

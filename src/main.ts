@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import i18n from './language/i18n'
 import airbnb from './db/index'
+import { store } from './store/index'
 
 // 初始化store仓库
 router.beforeEach((to, from, next) => {
@@ -23,4 +24,5 @@ app.config.globalProperties.$message = ElMessage
 app.use(router)
 app.use(ElementPlus)
 app.use(i18n)
+app.use(store)
 app.mount('#app')

@@ -7,7 +7,8 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <!-- 注意占位符不可换行，否则会造成二次渲染 -->
+    <div id="app"><!--ssr-outlet--></div>
+    <script type="module" src="/src/entry-client.ts"></script>
   </body>
 </html>

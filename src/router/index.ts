@@ -35,7 +35,9 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  // 客户端渲染时使用createWebHistory，服务端渲染时使用createMemoryHistory
+  // 通过import.meta.env.SSR来区分是客户端渲染还是服务端渲染
+  history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes
 })
 

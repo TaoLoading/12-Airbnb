@@ -2,12 +2,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
-/**
- * 国际化相关
- */
-const { t } = useI18n() // i18n提供t方法，通过t方法包裹变量实现值的显示
 
 </script>
 

@@ -15,6 +15,6 @@ router.beforeEach((to, from, next) => {
   })
 })
 
-router.isReady().then(() => {
+/* router.isReady().then(() => {
   app.mount('#app')
-})
+}) */

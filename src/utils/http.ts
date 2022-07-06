@@ -39,7 +39,7 @@ export default {
 // ts版封装
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 const defaultConfig = {
-  timeout: 5000,
+  timeout: 100000,
   baseURL: import.meta.env.PROD ? 'http://110.42.184.111' : 'http://localhost:3000/release'
 }
 class Http {
@@ -72,7 +72,7 @@ class Http {
    * 封装请求
    */
   // get
-  public httpRequestGet<T>(url: string, params: AxiosRequestConfig): Promise<T> {
+  public httpRequestGet<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
     return Http.axiosInstance.get(url, { params }).then(res => res.data).catch()
   }
 

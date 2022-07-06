@@ -37,7 +37,6 @@ export async function fetchLanguageApi() {
     lock: true,
     background: 'rgba(0, 0, 0, 0.1)'
   })
-  console.log('获取当前语言包')
   // await airbnb.airbnbDB.openStore('language', 'id', ['name'])
   const result: IResultOr = await airbnb.airbnbDB.getItem('language', 1).then((res: any) => {
     setTimeout(() => {

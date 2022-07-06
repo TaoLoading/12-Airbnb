@@ -23,7 +23,7 @@ export default class DB {
         reject(false)
       }
       request.onupgradeneeded = (event) => { // 初始化时会调用一次
-        console.log('数据库升级成功')
+        // console.log('数据库升级成功')
         // 获取result对象
         const { result }: any = event.target
 
@@ -41,7 +41,7 @@ export default class DB {
               )
             }
             store.transaction.oncomplete = (e: any) => {
-              console.log('创建对象仓库成功')
+              // console.log('创建对象仓库成功')
             }
           }
         }

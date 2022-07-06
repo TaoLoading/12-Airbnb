@@ -22,7 +22,6 @@ export default function userFormOperates(t: any) {
       if (success) {
         proxy.$message.success(t('login.signSuccess'))
       } else {
-        console.log('res', res)
         proxy.$message.error(message)
       }
     })

@@ -9,7 +9,7 @@
       <!-- 首页列表 -->
       <div>
         <div class="home-list">
-          <div class="item" v-for="(item, index) in store.state.roomList" :key="index">
+          <div class="item" v-for="(item, index) in store.state.roomList" :key="index" @click="clickIt(item)">
             <img :src="item.pictureUrl" :alt="item.title" />
             <p class="title">{{ item.title }}</p>
             <p class="price">¥{{ item.price }}元</p>
@@ -30,9 +30,13 @@ export default defineComponent({
   setup() {
     const { t } = useI18n()
     const store = useStore()
+    const clickIt = (item: any) => {
+      console.log('-----------', item)
+    }
     return {
       t,
-      store
+      store,
+      clickIt
     }
   },
   asyncData({ store, route }: any) {

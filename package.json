@@ -9,7 +9,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.ts"
+    "build:server": "vite build --outDir dist/server --ssr src/entry-server.ts",
+    "build:ssr": "npm run build:client && npm run build:server"
   },
   "dependencies": {
     "axios": "^0.27.2",

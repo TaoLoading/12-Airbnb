@@ -21,7 +21,6 @@ router.beforeEach((to, from, next) => {
 
 router.isReady().then(() => {
   router.beforeResolve((to, from, next) => {
-    console.log('-------------------')
     const toComponents = router.resolve(to).matched.flatMap(record =>
       Object.values(record.components)
     )

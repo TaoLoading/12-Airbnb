@@ -20,5 +20,30 @@ router.beforeEach((to, from, next) => {
 })
 
 router.isReady().then(() => {
+  router.beforeResolve((to, from, next) => {
+    console.log('-------------------')
+    const toComponents = router.resolve(to).matched.flatMap(record =>
+      Object.values(record.components)
+    )
+    const fromComponents = router.resolve(from).matched.flatMap(record =>
+      Object.values(record.components)
+    )
+    const actives = toComponents.filter((c, i) => {
+      return fromComponents[i] !== c
+    })
+    if (!actives.length) {
+      return next()
+    }
+    Promise.all(actives.map((Component: any) => {
+      if (Component.asyncData) {
+        return Component.asyncData({
+          store,
+          route: router.currentRoute
+        })
+      }
+    })).then(() => {
+      next()
+    })
+  })
   app.mount('#app')
 })

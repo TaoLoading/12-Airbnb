@@ -1,8 +1,9 @@
 import { createSSRApp } from 'vue'
-import { createSSRRouter } from './router'
 import ElementPlus, { ElMessage } from 'element-plus'
+import { sync } from 'vuex-router-sync'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
+import { createSSRRouter } from './router'
 import { createSSRi18n } from './language/i18n'
 // import airbnb from './db/index'
 import { createSSRStore, key } from './store/index'
@@ -25,6 +26,8 @@ export const createApp = () => {
   const router = createSSRRouter()
   const i18n = createSSRi18n()
 
+  // 使用vuex-router-sync获取路由中的数据并同步到vuex中
+  sync(store, router)
 
   app.config.globalProperties.$message = ElMessage
   app.use(router)

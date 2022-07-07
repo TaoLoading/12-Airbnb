@@ -60,7 +60,6 @@ export function createSSRStore() {
       getRoomList({ commit, state }, payload) {
         return new Promise(resolve => {
           fetchRoomList().then(res => {
-            console.log('请求成功')
             const { success, result } = res
             const orders = result.orders
             if (success) {
@@ -68,7 +67,7 @@ export function createSSRStore() {
             }
             resolve(true)
           }).catch(err => {
-            console.log('请求错误', err)
+            console.log('请求出错', err)
           })
         })
       }

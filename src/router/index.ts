@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('@/views/home/index.vue'),
+    component: () => import('@/views/home/homeIndex.vue'),
     meta: {
       title: '爱彼迎-全球大型房屋租赁平台',
       keywords: '爱彼迎，特价房源，品质房源，租赁平台',
@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/mine',
     name: 'mine',
-    component: () => import('@/views/mine/index.vue'),
+    component: () => import('@/views/mine/mineIndex.vue'),
     meta: {
       title: '',
       keywords: '',
@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/loginIndex.vue')
   }
 ]
 

@@ -5,14 +5,15 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <!-- preload-links -->
   </head>
   <body>
     <!-- 占位，注意此占位符不可换行，否则会造成二次渲染 -->
-    <div id="app"><!--ssr-outlet--></div>
+    <div id="app"><!-- ssr-outlet --></div>
     <script type="module" src="/src/entry-client.ts"></script>
     <!-- 占位，用于存放服务端预取的数据 -->
     <script>
-      window.__INITIAL_STATE__ = '<!--vuex-state-->'
+      window.__INITIAL_STATE__ = '<!-- vuex-state -->'
     </script>
   </body>
 </html>

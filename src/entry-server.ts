@@ -2,7 +2,7 @@ import { renderToString } from 'vue/server-renderer'
 import { ID_INJECTION_KEY } from 'element-plus'
 import { createApp } from './main'
 
-export async function render(url: string) {
+export async function render(url: string, manifest: any) {
   const { app, router, store } = createApp()
   await router.push(url)
   await router.isReady()
@@ -30,5 +30,11 @@ export async function render(url: string) {
 
   const appHtml = await renderToString(app)
   const state = store.state
-  return { appHtml, state }
+
+  if (import.meta.env.PROD) {
+    const preloadLinks = 'renderLinks(context.modules, manifest)'
+    return { appHtml, state, preloadLinks }
+  } else {
+    return { appHtml, state }
+  }
 }

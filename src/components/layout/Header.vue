@@ -103,5 +103,5 @@ const userLogout = () => {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/layout/commonHeader.scss";
+@import "@/assets/scss/layout/headerStyle.scss";
 </style>

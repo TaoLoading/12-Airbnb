@@ -1,20 +1,20 @@
 <template>
   <el-config-provider :locale="store.state.locale">
     <!-- 头部 -->
-    <commonHeader v-show="route.fullPath.indexOf('login') === -1"></commonHeader>
+    <Header v-show="route.fullPath.indexOf('login') === -1"></Header>
     <!-- 主体 -->
     <div class="container">
       <router-view />
     </div>
     <!-- 底部 -->
-    <commonFooter v-show="route.fullPath.indexOf('login') === -1"></commonFooter>
+    <Footer v-show="route.fullPath.indexOf('login') === -1"></Footer>
   </el-config-provider>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import commonHeader from './components/layout/commonHeader.vue'
-import commonFooter from './components/layout/commonFooter.vue'
+import Header from './components/layout/Header.vue'
+import Footer from './components/layout/Footer.vue'
 import { useStore } from '@/store/index'
 
 const route = useRoute()

@@ -115,5 +115,5 @@ const footerMenu = reactive(
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/layout/commonFooter.scss";
+@import "@/assets/scss/layout/footerStyle.scss";
 </style>

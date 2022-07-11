@@ -5,8 +5,8 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CommonFooter: typeof import('./src/components/layout/commonFooter.vue')['default']
-    CommonHeader: typeof import('./src/components/layout/commonHeader.vue')['default']
+    Footer: typeof import('./src/components/layout/Footer.vue')['default']
+    Header: typeof import('./src/components/layout/Header.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
@@ -18,10 +18,9 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
-    HeaderCommon: typeof import('./src/components/layout/headerCommon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
 }
 
-export {}
+export { }

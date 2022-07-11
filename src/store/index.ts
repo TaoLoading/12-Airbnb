@@ -58,11 +58,20 @@ export function createSSRStore() {
       },
       // 获取房屋列表数据
       getRoomList({ commit, state }, payload) {
+        const { pageNo, cityCode = state.cityCode } = payload
+        state.pageNo = pageNo
+        const params = {
+          pageNo,
+          pageSize: state.pageSize,
+          cityCode
+        }
         return new Promise(resolve => {
-          fetchRoomList().then(res => {
+          fetchRoomList(params).then(res => {
             const { success, result } = res
             const orders = result.orders
+            const total = result.total
             if (success) {
+              state.total = total
               commit('setRoomList', orders.data)
             }
             resolve(true)

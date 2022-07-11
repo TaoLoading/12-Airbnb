@@ -38,10 +38,12 @@ export default {
 
 // ts版封装
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+
 const defaultConfig = {
   timeout: 100000,
   baseURL: 'http://110.42.184.111'
 }
+
 class Http {
   constructor() {
     this.httpInterceptorsRequest()

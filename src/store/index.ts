@@ -57,7 +57,7 @@ export function createSSRStore() {
         })
       },
       // 获取房屋列表数据
-      getRoomList({ commit, state }, payload) {
+      getRoomList({ commit, state }, payload: IRoomListParams) {
         const { pageNo, cityCode = state.cityCode } = payload
         state.pageNo = pageNo
         const params = {

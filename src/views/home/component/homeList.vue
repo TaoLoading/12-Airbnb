@@ -1,4 +1,6 @@
 <template>
+  <!-- 城市筛选 -->
+  <HomeTabs />
   <!-- 首页列表数据 -->
   <div>
     <div class="home-list">
@@ -14,10 +16,11 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import Pagination from '@/components/common/pagination.vue'
 import { IRoomListParams } from '@/api/interface'
-import { useRouter } from 'vue-router'
+import HomeTabs from './homeTabs.vue'
 
 const router = useRouter()
 function toDetail(item: any) {

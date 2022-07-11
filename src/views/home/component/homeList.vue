@@ -19,11 +19,12 @@ import Pagination from '@/components/common/pagination.vue'
 import { IRoomListParams } from '@/api/interface'
 import { useRouter } from 'vue-router'
 
-const store = useStore()
 const router = useRouter()
 function toDetail(item: any) {
   console.log('-----------', item)
 }
+
+const store = useStore()
 function changePage(pageNo: number) {
   store.dispatch('getRoomList', { pageNo } as IRoomListParams)
 }

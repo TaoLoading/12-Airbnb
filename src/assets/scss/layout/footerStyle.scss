@@ -2,7 +2,7 @@
   border-top: 1px solid #ccc;
 
   .inner-footer {
-    @include main-wrapper;
+    @include mainWrapper;
 
     ul {
       flex-direction: row;
@@ -25,7 +25,7 @@
     }
 
     .copy-right {
-      @include main-wrapper;
+      @include mainWrapper;
       text-align: center;
       border-top: 1px solid #ccc;
       padding: 30px 0;

@@ -23,11 +23,13 @@ import { IRoomListParams } from '@/api/interface'
 import HomeTabs from './homeTabs.vue'
 
 const router = useRouter()
+const store = useStore()
 function toDetail(item: any) {
-  console.log('-----------', item)
+  const { id } = item
+  router.push({ path: `/roomDetail/${id}` })
+  // store.commit('setRoomId', id)
 }
 
-const store = useStore()
 function changePage(pageNo: number) {
   store.dispatch('getRoomList', { pageNo } as IRoomListParams)
 }

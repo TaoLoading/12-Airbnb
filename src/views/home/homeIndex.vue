@@ -3,7 +3,7 @@
     <!-- banner -->
     <div class="banner"></div>
     <!-- 房屋列表 -->
-    <div class="main-wrapper">
+    <div class="mainWrapper">
       <h2 class="title">{{ t('home.h2Title') }}</h2>
       <p class="subTitle">{{ t('home.subTitle') }}</p>
       <!-- 首页列表 -->
@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script  lang="ts">
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import HomeList from './component/homeList.vue'

@@ -21,19 +21,19 @@
   }
 }
 
-.main-wrapper {
-  @include main-wrapper(50px)
+.mainWrapper {
+  @include mainWrapper(50px)
 }
 
-.room-detail {
+.roomDetail {
   @include flex-layout(row, null, flex-start);
 
-  .detail-part {
+  .detailPart {
     flex: 3;
     margin-right: 30px;
   }
 
-  .form-part {
+  .formPart {
     flex: 1;
     padding: 24px;
     border-radius: 5px;
@@ -113,7 +113,7 @@
         }
       }
 
-      &.live-number {
+      &.liveNumber {
         &::before {
           background: url(../../images/detail/liveNumber.png) no-repeat;
           background-size: 16px;
@@ -135,7 +135,7 @@
     border: none;
   }
 
-  .owner-detail {
+  .ownerDetail {
     @include flex-layout(row, null, flex-start);
 
     img {

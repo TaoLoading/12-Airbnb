@@ -3,6 +3,7 @@ import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
 import { IRoomListParams, IRoomDetailParams } from '@/api/interface'
 import { fetchRoomList } from '@/api/home'
+import { fetchRoomDetail } from '@/api/detail'
 
 // 为 store state 声明类型
 export interface AllStateTypes {
@@ -79,6 +80,18 @@ export function createSSRStore() {
             console.log('请求出错', err)
           })
         })
+      },
+      // 获取房屋详情数据
+      getRoomDetail({ commit, state }, payload: IRoomDetailParams) {
+        return new Promise(resolve => {
+          fetchRoomDetail(payload).then(res => {
+            const { success, result } = res
+            if (success) {
+              commit('setRoomDetail', result)
+              resolve(true)
+            }
+          })
+        })
       }
     },
     mutations: {
@@ -96,6 +109,11 @@ export function createSSRStore() {
       setRoomList(state, payload) {
         state.roomList = payload
         return state.roomList
+      },
+      // 设置房屋详情数据
+      setRoomDetail(state, payload) {
+        state.roomDetail = payload
+        return state.roomDetail
       }
     }
   })

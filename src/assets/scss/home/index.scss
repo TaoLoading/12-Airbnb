@@ -78,8 +78,8 @@
     }
   }
 
-  .main-wrapper {
-    @include main-wrapper()
+  .mainWrapper {
+    @include mainWrapper()
   }
 
   .homeList {

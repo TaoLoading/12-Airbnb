@@ -54,7 +54,7 @@ async function createServer() {
         // 3. 加载服务器入口。vite.ssrLoadModule 将自动转换
         //    你的 ESM 源码使之可以在 Node.js 中运行！无需打包
         //    并提供类似 HMR 的根据情况随时失效。
-        render = (await vite.ssrLoadModule('./src/entry-server.ts')).render
+        render = (await vite.ssrLoadModule('./src/entryServer.ts')).render
       } else {
         // 生产环境下
 
@@ -65,10 +65,10 @@ async function createServer() {
         )
 
         // 2. 加载服务器入口
-        render = require('./dist/server/entry-server.js').render
+        render = require('./dist/server/entryServer.js').render
       }
 
-      // 4. 渲染应用的 HTML。这假设 entry-server.js 导出的 `render`
+      // 4. 渲染应用的 HTML。这假设 entryServer.js 导出的 `render`
       //    函数调用了适当的 SSR 框架 API。
       //    例如 ReactDOMServer.renderToString()
       const manifest = require('./dist/client/ssr-manifest.json')

@@ -17,7 +17,7 @@
             <el-input type="password" :placeholder="t('login.placePass')" v-model="ruleForm.password"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login-btn" type="primary" @click="submitForm">{{ loginText }}</el-button>
+            <el-button class="loginBtn" type="primary" @click="submitForm">{{ loginText }}</el-button>
           </el-form-item>
         </el-form>
       </div>

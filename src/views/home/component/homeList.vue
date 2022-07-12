@@ -3,7 +3,7 @@
   <HomeTabs />
   <!-- 首页列表数据 -->
   <div>
-    <div class="home-list">
+    <div class="homeList">
       <div class="item" @click="toDetail(item)" v-for="(item, index) in store.state.roomList" :key="index">
         <img :src="item.pictureUrl" :alt="item.title" />
         <p class="title">{{ item.title }}</p>

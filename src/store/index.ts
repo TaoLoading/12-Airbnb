@@ -114,6 +114,11 @@ export function createSSRStore() {
       setRoomDetail(state, payload) {
         state.roomDetail = payload
         return state.roomDetail
+      },
+      // 设置房屋ID
+      setRoomId(state, payload) {
+        state.roomId = payload
+        return state.roomId
       }
     }
   })

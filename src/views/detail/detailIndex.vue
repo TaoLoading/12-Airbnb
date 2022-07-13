@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { IRoomDetailParams } from '@/api/interface'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import DetailPage from './component/detailPage.vue'
 
 export default defineComponent({
@@ -16,11 +16,11 @@ export default defineComponent({
     }
   },
   asyncData({ store, route }: any) {
-    /* store.commit('setOrderVisible', false)
+    // store.commit('setOrderVisible', false)
     const { roomId } = store.state
-    const { id } = route.value.params */
-    return store.dispatch('getRoomDetail', { id: 1 } as IRoomDetailParams)
-  }
+    const { id } = route.value.params
+    return store.dispatch('getRoomDetail', { id: roomId || id } as IRoomDetailParams)
+  },
 })
 </script>
 

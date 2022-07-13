@@ -27,7 +27,7 @@ const store = useStore()
 function toDetail(item: any) {
   const { id } = item
   router.push({ path: `/roomDetail/${id}` })
-  // store.commit('setRoomId', id)
+  store.commit('setRoomId', id)
 }
 
 function changePage(pageNo: number) {

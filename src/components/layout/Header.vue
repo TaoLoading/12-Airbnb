@@ -1,6 +1,7 @@
 <template>
   <div class="common-header">
-    <img class="logo" src="../../assets/images/layout/logo.png" alt="爱彼迎">
+    <img class="logo" src="../../assets/images/layout/logo.png" alt="爱彼迎"
+      @click="() => { router.push({ name: 'home' }) }">
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
       :ellipsis="false">
       <el-menu-item index="orders">{{ t("header.orders") }}</el-menu-item>

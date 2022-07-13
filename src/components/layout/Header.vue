@@ -1,10 +1,22 @@
 <template>
-  <div class="common-header">
+  <div class="commonHeader">
     <img class="logo" src="../../assets/images/layout/logo.png" alt="爱彼迎"
       @click="() => { router.push({ name: 'home' }) }">
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
       :ellipsis="false">
-      <el-menu-item index="orders">{{ t("header.orders") }}</el-menu-item>
+      <el-menu-item index="orders">
+        {{ t("header.orders") }}
+        <template v-if="store.state.orderVisible">
+          <Suspense>
+            <template #default>
+              <OrderPopover />
+            </template>
+            <template #fallback>
+              <div class="loadingBlock">{{ t("common.loading") }}</div>
+            </template>
+          </Suspense>
+        </template>
+      </el-menu-item>
       <el-menu-item index="records">{{ t("header.records") }}</el-menu-item>
       <el-sub-menu index="language">
         <template #title>{{ t("header.language") }}</template>
@@ -23,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, ref } from 'vue'
+import { getCurrentInstance, ref, defineAsyncComponent } from 'vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
 import { useI18n } from 'vue-i18n'
@@ -37,6 +49,8 @@ const activeIndex = ref('1')
 const { t, locale: localeLanguage } = useI18n()
 const { proxy }: any = getCurrentInstance()
 const store = useStore()
+// 使用defineAsyncComponent引入OrderPopover，目的是异步加载OrderPopover组件
+const OrderPopover = defineAsyncComponent(() => import('@/views/order/orderPopover.vue'))
 
 // 用于更改语言的待分发事件
 const emit = defineEmits<{
@@ -60,6 +74,8 @@ const handleSelect = (key: string) => {
     router.push({ name: 'login' })
   } else if (key === 'logout') {
     userLogout()
+  } else if (key === 'orders') {
+    store.commit('setOrderVisible', true)
   }
 }
 

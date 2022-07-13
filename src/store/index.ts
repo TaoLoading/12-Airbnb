@@ -37,12 +37,19 @@ export function createSSRStore() {
       userStatus: 0,
       // 房屋列表数据
       roomList: [],
+      // 页码
       pageNo: 1,
+      // 条数
       pageSize: 6,
+      // 总数
       total: 0,
+      // 城市筛选项
       cityCode: 'hz',
+      // 房屋详情数据
       roomDetail: {},
+      // 房屋id
       roomId: null,
+      // 订单组件是否显示
       orderVisible: false
     },
     actions: {
@@ -119,6 +126,11 @@ export function createSSRStore() {
       setRoomId(state, payload) {
         state.roomId = payload
         return state.roomId
+      },
+      // 设置订单显示隐藏
+      setOrderVisible(state, payload) {
+        state.orderVisible = payload
+        return state.orderVisible
       }
     }
   })

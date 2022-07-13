@@ -89,8 +89,8 @@ async function createServer() {
     }
   })
 
-  app.listen(5173, () => {
-    console.log('node server 运行 localhost:5173', isProd ? '生产环境' : '开发环境')
+  app.listen(3000, () => {
+    console.log('node server 运行 localhost:3000', isProd ? '生产环境' : '开发环境')
   })
 }
 

@@ -41,6 +41,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 const defaultConfig = {
   timeout: 100000,
+  // baseURL: import.meta.env.PROD ? '' : 'http://localhost:3000/release'
   baseURL: 'http://110.42.184.111'
 }
 

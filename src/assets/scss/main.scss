@@ -43,8 +43,8 @@ p {
   margin-left: 10px;
 }
 
-.loading-block {
-  @include placeholder-order(center);
+.loadingBlock {
+  @include placeholderOrder(center);
 }
 
 .mask {

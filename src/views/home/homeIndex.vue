@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="homePage">
     <!-- banner -->
     <div class="banner"></div>
     <!-- 房屋列表 -->

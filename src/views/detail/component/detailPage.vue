@@ -1,7 +1,7 @@
 <template>
   <div v-if="roomDetail && roomDetail.info && roomDetail.owner">
     <!-- 照片墙 -->
-    <el-carousel v-if="roomDetail.imgs && roomDetail.imgs.length > 0" class="imgs-wall" trigger="click" height="380px"
+    <el-carousel v-if="roomDetail.imgs && roomDetail.imgs.length > 0" class="imgWall" trigger="click" height="380px"
       :interval="3000" indicator-position="none" type="card">
       <el-carousel-item v-for="(item, index) in roomDetail.imgs" :key="index">
         <img :src="item" />
@@ -61,7 +61,7 @@
                 </select>
               </el-form-item>
               <el-form-item>
-                <el-button class="btn-primary" type="primary" @click="submitForm">{{ t('detail.order') }}</el-button>
+                <el-button class="btnPrimary" type="primary" @click="submitForm">{{ t('detail.order') }}</el-button>
               </el-form-item>
             </el-form>
           </div>

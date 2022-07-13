@@ -1,8 +1,8 @@
 <template>
-  <div class="login-page">
-    <div class="left-part"></div>
-    <div class="right-part">
-      <div class="login-panel">
+  <div class="loginPage">
+    <div class="leftPart"></div>
+    <div class="rightPart">
+      <div class="loginPanel">
         <!-- tabs -->
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane :label="t('login.loginTab')" name="login"></el-tab-pane>

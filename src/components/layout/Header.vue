@@ -49,6 +49,7 @@ const activeIndex = ref('1')
 const { t, locale: localeLanguage } = useI18n()
 const { proxy }: any = getCurrentInstance()
 const store = useStore()
+
 // 使用defineAsyncComponent引入OrderPopover，目的是异步加载OrderPopover组件
 const OrderPopover = defineAsyncComponent(() => import('@/views/order/orderPopover.vue'))
 

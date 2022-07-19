@@ -76,6 +76,7 @@ import { reactive, computed, ref, getCurrentInstance, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useStore } from '@/store'
+import { saveRecordApi } from '@/api/record'
 
 const { t } = useI18n()
 const store = useStore()
@@ -86,10 +87,35 @@ const orderForm = reactive({
 })
 const ruleForm = ref()
 const route = useRoute()
+const { proxy }: any = getCurrentInstance()
 
 // 提交表单
 function submitForm() {
-  console.log('-------------')
+  recordRoom()
+}
+
+// 预定房间
+function recordRoom() {
+  const { id: recordId } = route.params
+  const {
+    title,
+    price,
+    imgs
+  } = roomDetail.value
+  const personNumber = orderForm.personNumber
+  const params = {
+    recordId,
+    title,
+    price,
+    personNumber,
+    pictureUrl: imgs[0]
+  }
+  saveRecordApi(params).then((res) => {
+    const { success, message } = res
+    if (!success) {
+      proxy.$message.error(message)
+    }
+  })
 }
 </script>
 

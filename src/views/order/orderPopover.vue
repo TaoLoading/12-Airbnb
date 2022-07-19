@@ -1,22 +1,68 @@
 <template>
-  123
+  <Teleport to="#app">
+    <div class="mask" @click="closeMask"></div>
+  </Teleport>
+  <ul v-if="orderData.length > 0">
+    <li v-for="(item, index) in orderData" :key="index" @click="toDetail(item)">
+      <img :src="item.pictureUrl" />
+      <div class="mess">
+        <p class="title">{{ item.title }}</p>
+        <p class="info">¥{{ item.price }}/{{ t('detail.night') }} · {{ item.personNumber }}{{ t('detail.person') }}</p>
+      </div>
+    </li>
+  </ul>
+  <div v-else class="loading-block">{{ t("common.empty") }}</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, getCurrentInstance } from 'vue'
+import { fetchOrderApi } from '@/api/order'
+import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const count = ref(0)
-function fetchApi() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      count.value = 6
-      resolve(true)
-    }, 20000)
+let orderData = reactive<Array<any>>([])
+const router = useRouter()
+const { proxy }: any = getCurrentInstance()
+const store = useStore()
+
+// 房屋订单中心列表
+function fetchOrder() {
+  return fetchOrderApi().then((res) => {
+    const { result, success, message } = res
+    if (success) {
+      orderData = result
+    } else {
+      proxy.$message.error(message)
+    }
   })
 }
-fetchApi()
+if (store.state.userStatus) {
+  await fetchOrder()
+} else {
+  proxy.$message.warning(t('login.loginLost'))
+  const { pathname } = window.location
+  router.replace({
+    path: '/login',
+    query: {
+      redirect: pathname
+    }
+  })
+  closeMask()
+}
+
+// 关闭遮罩和popover
+function closeMask() {
+  store.commit('setOrderVisible', false)
+}
+
+// 查看详情
+function toDetail(item: any) {
+  const { orderId: id } = item
+  router.push({ path: `/roomDetail/${id}` })
+  store.commit('setRoomId', id)
+}
 </script>
 
 <style lang="scss" scoped>

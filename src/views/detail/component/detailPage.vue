@@ -112,7 +112,9 @@ function recordRoom() {
   }
   saveRecordApi(params).then((res) => {
     const { success, message } = res
-    if (!success) {
+    if (success) {
+      proxy.$message.success('预定成功')
+    } else {
       proxy.$message.error(message)
     }
   })

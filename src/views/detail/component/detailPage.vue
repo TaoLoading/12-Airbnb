@@ -76,7 +76,7 @@ import { reactive, computed, ref, getCurrentInstance, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useStore } from '@/store'
-import { saveRecordApi } from '@/api/record'
+import { saveOrderApi } from '@/api/order'
 
 const { t } = useI18n()
 const store = useStore()
@@ -110,7 +110,7 @@ function recordRoom() {
     personNumber,
     pictureUrl: imgs[0]
   }
-  saveRecordApi(params).then((res) => {
+  saveOrderApi(params).then((res) => {
     const { success, message } = res
     if (success) {
       proxy.$message.success('预定成功')

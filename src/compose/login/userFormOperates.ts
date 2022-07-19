@@ -3,7 +3,7 @@
  */
 
 import { getCurrentInstance } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { IResultOr } from '@/api/interface'
 import { userSignApi, userLoginApi } from '@/api/login'
 import { useStore } from '@/store'
@@ -30,13 +30,17 @@ export default function userFormOperates(t: any) {
   // 登录
   const router = useRouter()
   const store = useStore()
+  const route = useRoute()
   const userLogin = (params: FormType) => {
     userLoginApi(params).then((res: IResultOr) => {
       const { success, result, message } = res
       if (success) {
-        const { status } = result
+        const { status, userId } = result
+        localStorage.setItem('userId', userId)
         store.commit('setUserStatus', status)
         proxy.$message.success(t('login.loginSuccess'))
+        const { redirect }: any = route.query
+        // router.push({ path: redirect || '/' })
         router.push({ name: 'home' })
       } else {
         proxy.$message.error(message)

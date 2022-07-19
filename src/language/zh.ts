@@ -78,7 +78,7 @@ export default {
     reserved: '预定成功！'
   },
   common: {
-    loading: '拼命加载中...',
+    loading: '加载中...',
     empty: '空空如也 ~'
   }
 }

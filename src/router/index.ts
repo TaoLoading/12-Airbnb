@@ -17,17 +17,6 @@ const routes = [
     }
   },
   {
-    path: '/mine',
-    name: 'mine',
-    component: () => import('@/views/mine/mineIndex.vue'),
-    meta: {
-      title: '',
-      keywords: '',
-      description: '',
-      keepAlive: false
-    }
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/loginIndex.vue')

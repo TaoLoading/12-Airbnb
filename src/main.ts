@@ -5,20 +5,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import { createSSRRouter } from './router'
 import { createSSRi18n } from './language/i18n'
-// import airbnb from './db/index'
 import { createSSRStore, key } from './store/index'
-
-// 初始化store仓库
-/* router.beforeEach((to, from, next) => {
-  airbnb.airbnbDB.openStore({
-    ...airbnb.languageObjectStore,
-    ...airbnb.orderObjectStore,
-    ...airbnb.recordObjectStore,
-    ...airbnb.userObjectStore
-  }).then(() => {
-    next()
-  })
-}) */
 
 export const createApp = () => {
   const app = createSSRApp(App)

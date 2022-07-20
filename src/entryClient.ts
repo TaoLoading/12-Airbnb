@@ -10,10 +10,10 @@ if ((window as any).__INITIAL_STATE__) {
 // 初始化store仓库
 router.beforeEach((to, from, next) => {
   airbnb.airbnbDB.openStore({
+    ...airbnb.userObjectStore,
     ...airbnb.languageObjectStore,
     ...airbnb.orderObjectStore,
-    ...airbnb.recordObjectStore,
-    ...airbnb.userObjectStore
+    ...airbnb.recordObjectStore
   }).then(() => {
     next()
   })

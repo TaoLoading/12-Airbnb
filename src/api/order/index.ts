@@ -32,6 +32,7 @@ export async function saveOrderApi(params: any) {
       resolve({ code: '000001', success: false, message: '数据已存在', result: null })
     })
   } else {
+    // 将userId并入参数，用于不同用户的数据隔离
     Object.assign(params, { userId })
     result = await new Promise((resolve, reject) => {
       airbnb.airbnbDB.updateItem(storeName, params).then(res => {
@@ -58,6 +59,7 @@ export async function fetchOrderApi() {
       setTimeout(() => {
         loading.close()
       }, 200)
+      // 通过userId对订单信息进行筛选，实现数据隔离
       res = res.filter((item: any) => {
         return item.userId === userId
       })

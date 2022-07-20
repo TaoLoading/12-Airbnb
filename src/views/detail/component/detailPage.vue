@@ -89,9 +89,21 @@ const ruleForm = ref()
 const route = useRoute()
 const { proxy }: any = getCurrentInstance()
 
-// 提交表单
+// 提交按钮
 function submitForm() {
-  recordRoom()
+  // 检查是否已登录
+  if (store.state.userStatus) {
+    recordRoom()
+  } else {
+    proxy.$message.warning(t('login.loginLost'))
+    const { pathname } = window.location
+    router.replace({
+      path: '/login',
+      query: {
+        redirect: pathname
+      }
+    })
+  }
 }
 
 // 预定房间

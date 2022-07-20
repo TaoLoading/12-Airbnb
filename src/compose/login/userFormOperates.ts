@@ -40,8 +40,7 @@ export default function userFormOperates(t: any) {
         store.commit('setUserStatus', status)
         proxy.$message.success(t('login.loginSuccess'))
         const { redirect }: any = route.query
-        // router.push({ path: redirect || '/' })
-        router.push({ name: 'home' })
+        router.push({ path: redirect || '/' })
       } else {
         proxy.$message.error(message)
       }

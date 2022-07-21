@@ -17,7 +17,7 @@
           </Suspense>
         </template>
       </el-menu-item>
-      <el-menu-item index="records">{{ t("header.records") }}</el-menu-item>
+      <el-menu-item index="history">{{ t("header.history") }}</el-menu-item>
       <el-sub-menu index="language">
         <template #title>{{ t("header.language") }}</template>
         <el-menu-item index="zh">中文</el-menu-item>
@@ -77,6 +77,8 @@ const handleSelect = (key: string) => {
     userLogout()
   } else if (key === 'orders') {
     store.commit('setOrderVisible', true)
+  } else if (key === 'history') {
+    router.push({ name: 'history' })
   }
 }
 

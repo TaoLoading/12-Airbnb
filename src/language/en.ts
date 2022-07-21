@@ -2,7 +2,7 @@ export default {
   // 头部组件
   header: {
     orders: 'Housing order center',
-    records: 'The historical footprints',
+    history: 'The historical footprints',
     language: 'Language'
   },
   // 底部组件

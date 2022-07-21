@@ -2,7 +2,7 @@ export default {
   // 头部组件
   header: {
     orders: '房源订单中心',
-    records: '历史足迹',
+    history: '历史足迹',
     language: '语言'
   },
   // 底部组件

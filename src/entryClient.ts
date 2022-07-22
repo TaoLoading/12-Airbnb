@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
     ...airbnb.userObjectStore,
     ...airbnb.languageObjectStore,
     ...airbnb.orderObjectStore,
-    ...airbnb.recordObjectStore
+    ...airbnb.historyObjectStore
   }).then(() => {
     next()
   })

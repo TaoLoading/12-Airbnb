@@ -2,7 +2,7 @@ import { ElLoading } from 'element-plus'
 import { IResultOr } from '../interface'
 import airbnb from '../../db'
 
-const storeName = Object.keys(airbnb.recordObjectStore)[0]
+const storeName = Object.keys(airbnb.historyObjectStore)[0]
 
 // Mock接口：保存浏览记录
 export async function saveHistoryApi(params: any) {

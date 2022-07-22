@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ historyData }}
   </div>
 </template>
 
@@ -10,7 +11,7 @@ import { useI18n } from 'vue-i18n'
 import { fetchHistoryApi } from '@/api/history'
 import { useStore } from '@/store'
 
-const recordData = ref()
+const historyData = ref()
 const { t } = useI18n()
 const { proxy }: any = getCurrentInstance()
 const store = useStore()
@@ -18,14 +19,28 @@ const router = useRouter()
 const loading = ref(true)
 
 // 查看历史记录
-function fetchRecord() {
+function fetchHistory() {
   fetchHistoryApi().then(res => {
     const { success, message, result } = res
     // loading.value = false
     if (success) {
-      recordData.value = result
+      historyData.value = result
     } else {
       proxy.$message.error(message)
+    }
+  })
+}
+
+// 保存历史记录
+if (store.state.userStatus) {
+  fetchHistory()
+} else {
+  proxy.$message.warning(t('login.loginLost'))
+  const { pathname } = window.location
+  router.replace({
+    path: '/login',
+    query: {
+      redirect: pathname
     }
   })
 }

@@ -2,13 +2,13 @@ import TypeObjectStore from '../type'
 
 const webRecord: TypeObjectStore =
 {
-  keyPath: 'recordId',
+  keyPath: 'historyId',
   indexes: ['title', 'personNumber', 'pictureUrl', 'price']
 }
 
-const recordObjectStore =
+const historyObjectStore =
 {
-  web_record: webRecord
+  web_history: webRecord
 }
 
-export default recordObjectStore
+export default historyObjectStore

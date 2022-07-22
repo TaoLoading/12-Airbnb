@@ -27,7 +27,7 @@
         <template #title>
           <img class="avatar" src="../../assets/images/layout/avatar.jpg" alt="个人中心">
         </template>
-        <el-menu-item index="logout">退出</el-menu-item>
+        <el-menu-item index="logout">{{ t("login.logout") }}</el-menu-item>
       </el-sub-menu>
       <el-menu-item index="login" v-else>{{ t("login.loginTab") }}/{{ t("login.signTab") }}</el-menu-item>
     </el-menu>
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, ref, defineAsyncComponent } from 'vue'
+import { getCurrentInstance, ref, defineAsyncComponent, onMounted } from 'vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
 import { useI18n } from 'vue-i18n'
@@ -83,37 +83,37 @@ const handleSelect = (key: string) => {
 }
 
 // 获取语言包
-const fetchLanguage = () => {
+const getLanguage = () => {
   fetchLanguageApi().then(res => {
     const { success, result } = res
-    // 没有预存的语言包时，默认显示中文
-    if (!result) {
-      emit('changeLang', zhCn)
-      return
-    }
-    // 获取语言包名
-    const { name } = result
-    if (name === 'zh') {
-      emit('changeLang', zhCn)
-    } else if (name === 'en') {
-      emit('changeLang', en)
-    }
+    const { name } = result || {}
     if (success) {
-      console.log('获取语言包成功')
-    } else {
-      console.log('获取语言包失败')
+      if (name === 'zh') {
+        store.dispatch('saveLanguage', zhCn)
+        localeLanguage.value = name
+      } else if (name === 'en') {
+        store.dispatch('saveLanguage', en)
+        localeLanguage.value = name
+      }
+      console.log('获取当前语言包成功')
     }
   })
 }
-// fetchLanguage()
+onMounted(() => { // 使用onMounted区分服务端渲染和客户端渲染，仅在客户端渲染时执行getLanguage()
+  getLanguage()
+})
+
 
 // 登出
 const userLogout = () => {
   userLogoutApi().then((res: IResultOr) => {
     const { success } = res
     if (success) {
-      proxy.$message.success(t('login.logoutSuccess'))
+      // 清空localStorage
+      localStorage.clear()
+      // 修改userStatus状态
       store.commit('setUserStatus', 0)
+      proxy.$message.success(t('login.logoutSuccess'))
       router.push({ name: 'login' })
     } else {
       proxy.$message.error(t('login.logoutError'))

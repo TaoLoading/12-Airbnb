@@ -7,14 +7,19 @@ if ((window as any).__INITIAL_STATE__) {
   store.replaceState((window as any).__INITIAL_STATE__)
 }
 
-// 初始化store仓库
+// 路由守卫
 router.beforeEach((to, from, next) => {
+  // 初始化store仓库
   airbnb.airbnbDB.openStore({
     ...airbnb.userObjectStore,
     ...airbnb.languageObjectStore,
     ...airbnb.orderObjectStore,
     ...airbnb.historyObjectStore
   }).then(() => {
+    // 当userId存在时证明用户已登录，更新UserStatus状态为1，即已登录
+    if (localStorage.getItem('userId')) {
+      store.commit('setUserStatus', 1)
+    }
     next()
   })
 })

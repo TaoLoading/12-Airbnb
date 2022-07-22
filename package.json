@@ -1,7 +1,8 @@
 {
   "name": "07-airbnb",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "TaoLoading",
   "scripts": {
     "dev": "vite",
     "dev:ssr": "cross-env NODE_ENV=development node server",

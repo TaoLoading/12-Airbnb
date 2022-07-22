@@ -114,7 +114,7 @@ const userLogout = () => {
       // 修改userStatus状态
       store.commit('setUserStatus', 0)
       proxy.$message.success(t('login.logoutSuccess'))
-      router.push({ name: 'login' })
+      // router.push({ name: 'login' })
     } else {
       proxy.$message.error(t('login.logoutError'))
     }

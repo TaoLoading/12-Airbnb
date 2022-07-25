@@ -51,3 +51,25 @@ router.isReady().then(() => {
   })
   app.mount('#app')
 })
+
+// 在路由守卫中对meta中的信息进行更新
+router.afterEach((to, from, next) => {
+  const { roomDetail } = store.state
+  const { title: roomTitle = '', owner } = roomDetail || {}
+  const { introduce = '' } = owner || {}
+  const { meta } = to
+  const { title, keywords, description } = meta
+
+  if (title) {
+    document.title = `${title}${roomTitle}`
+  } else {
+    document.title = ''
+  }
+
+  const keywordsMeta = document.querySelector('meta[name="keywords"]')
+  keywordsMeta && keywordsMeta.setAttribute('content', `${keywords}${introduce}`)
+
+  const descriptionMeta = document.querySelector('meta[name="description"]')
+  descriptionMeta?.setAttribute('content', `${description}${introduce}`)
+
+})

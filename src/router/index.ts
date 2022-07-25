@@ -19,17 +19,35 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/loginIndex.vue')
+    component: () => import('@/views/login/loginIndex.vue'),
+    meta: {
+      title: '',
+      keywords: '',
+      description: '',
+      keepAlive: false
+    }
   },
   {
     path: '/roomDetail/:id',
     name: 'roomDetail',
-    component: () => import('@/views/detail/detailIndex.vue')
+    component: () => import('@/views/detail/detailIndex.vue'),
+    meta: {
+      title: '爱彼迎-',
+      keywords: '',
+      description: '',
+      keepAlive: false
+    }
   },
   {
     path: '/history',
     name: 'history',
-    component: () => import('@/views/history/historyIndex.vue')
+    component: () => import('@/views/history/historyIndex.vue'),
+    meta: {
+      title: '',
+      keywords: '',
+      description: '',
+      keepAlive: false
+    }
   }
 ]
 

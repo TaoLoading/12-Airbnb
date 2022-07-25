@@ -74,10 +74,19 @@ async function createServer() {
       const manifest = require('./dist/client/ssr-manifest.json')
       const { appHtml, state, preloadLinks } = await render(url, manifest)
 
+      // 获取seo相关信息
+      const { roomDetail } = state
+      const { title: roomTitle = '', owner } = roomDetail || {}
+      const { introduce = '' } = owner || {}
+      const { meta } = state.route
+      const { title, keywords, description } = meta
       // 5. 注入渲染后的应用程序 HTML 到模板中。
       const html = template.replace(`<!-- preload-links -->`, preloadLinks)
         .replace(`<!-- ssr-outlet -->`, appHtml)
         .replace('\'<!-- vuex-state -->\'', JSON.stringify(state))
+        .replace('<title>', `<title>${title}${roomTitle}`)
+        .replace('<meta name="keywords" content="" />', `<meta name="keywords" content="${keywords}${introduce}" />`)
+        .replace('<meta name="description" content="" />', `<meta name="description" content="${description}${introduce}" />`)
 
       // 6. 返回渲染后的 HTML。
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)

@@ -95,7 +95,6 @@ const getLanguage = () => {
         store.dispatch('saveLanguage', en)
         localeLanguage.value = name
       }
-      console.log('获取当前语言包成功')
     }
   })
 }

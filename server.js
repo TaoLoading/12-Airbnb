@@ -27,7 +27,7 @@ async function createServer() {
   } else {
     // 生产环境下
 
-    app.use(serverStatic(path.resolve(__dirname, 'dist/client')))
+    app.use(serverStatic(path.resolve(__dirname, 'dist/client'), { index: false }))
   }
 
   app.use('*', async (req, res, next) => {

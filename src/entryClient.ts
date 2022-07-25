@@ -71,5 +71,4 @@ router.afterEach((to, from, next) => {
 
   const descriptionMeta = document.querySelector('meta[name="description"]')
   descriptionMeta?.setAttribute('content', `${description}${introduce}`)
-
 })

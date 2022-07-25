@@ -53,14 +53,6 @@ const store = useStore()
 // 使用defineAsyncComponent引入OrderPopover，目的是异步加载OrderPopover组件
 const OrderPopover = defineAsyncComponent(() => import('@/views/order/orderPopover.vue'))
 
-// 用于更改语言的待分发事件
-const emit = defineEmits<{
-  (
-    e: 'changeLang',
-    language: any
-  ): void
-}>()
-
 // 菜单点击事件
 const router = useRouter()
 const handleSelect = (key: string) => {

@@ -1,6 +1,6 @@
 <template>
   <el-pagination v-model:currentPage="pageNo" :page-size="pageSize" :total="total" background layout="prev,pager,next"
-    @current-change="changePage"></el-pagination>
+    prev-text="<<" next-text=">>" @current-change="changePage"></el-pagination>
 </template>
 
 <script setup lang="ts">
